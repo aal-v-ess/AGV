@@ -1,0 +1,679 @@
+
+GccApplication24.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000003b4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000340  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000008  00800100  00800100  000003b4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000003b4  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003e4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000060  00000000  00000000  00000420  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000939  00000000  00000000  00000480  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007c0  00000000  00000000  00000db9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000005a7  00000000  00000000  00001579  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000ec  00000000  00000000  00001b20  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000439  00000000  00000000  00001c0c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001ab  00000000  00000000  00002045  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000050  00000000  00000000  000021f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	cd c0       	rjmp	.+410    	; 0x19e <__vector_1>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	55 c0       	rjmp	.+170    	; 0xc2 <__vector_11>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	19 c0       	rjmp	.+50     	; 0x54 <__bad_interrupt>
+  22:	18 c0       	rjmp	.+48     	; 0x54 <__bad_interrupt>
+  24:	17 c0       	rjmp	.+46     	; 0x54 <__bad_interrupt>
+  26:	16 c0       	rjmp	.+44     	; 0x54 <__bad_interrupt>
+  28:	15 c0       	rjmp	.+42     	; 0x54 <__bad_interrupt>
+  2a:	5d c0       	rjmp	.+186    	; 0xe6 <__vector_21>
+  2c:	13 c0       	rjmp	.+38     	; 0x54 <__bad_interrupt>
+  2e:	12 c0       	rjmp	.+36     	; 0x54 <__bad_interrupt>
+  30:	11 c0       	rjmp	.+34     	; 0x54 <__bad_interrupt>
+  32:	10 c0       	rjmp	.+32     	; 0x54 <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d4 e0       	ldi	r29, 0x04	; 4
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_clear_bss>:
+  40:	21 e0       	ldi	r18, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a8 30       	cpi	r26, 0x08	; 8
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	71 d1       	rcall	.+738    	; 0x334 <main>
+  52:	74 c1       	rjmp	.+744    	; 0x33c <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <init>:
+void Pulso();
+
+
+//Input/Output definition
+void init(void){
+	DDRB |= (1 << PINB0) | (1<<PINB3) | (1<<PINB1) | (1<<PINB7);	//pin B0 (LED) / pin B1 (L293D) / pin B7 (Trigger)
+  56:	84 b1       	in	r24, 0x04	; 4
+  58:	8b 68       	ori	r24, 0x8B	; 139
+  5a:	84 b9       	out	0x04, r24	; 4
+	DDRD |= (1 << PIND6) | (1 << PIND0) | (1 << PIND1) | (1<<PIND5) | (1<<PIND3) | (1<<PIND4) | (1<<PIND7);
+  5c:	8a b1       	in	r24, 0x0a	; 10
+  5e:	8b 6f       	ori	r24, 0xFB	; 251
+  60:	8a b9       	out	0x0a, r24	; 10
+	DDRD&=~(1<<PIND2);	// Pin INT0 as input
+  62:	52 98       	cbi	0x0a, 2	; 10
+	//PORTC Pin's which control the rotation of the motors
+	PORTD|=(1<<PIND3);
+  64:	5b 9a       	sbi	0x0b, 3	; 11
+	PORTB|=(1<<PINB1);
+  66:	29 9a       	sbi	0x05, 1	; 5
+
+	//ADC
+	ADMUX |=(1 << REFS0) | (1 << ADLAR); //External tension with capacitor (aligned left)
+  68:	ec e7       	ldi	r30, 0x7C	; 124
+  6a:	f0 e0       	ldi	r31, 0x00	; 0
+  6c:	80 81       	ld	r24, Z
+  6e:	80 66       	ori	r24, 0x60	; 96
+  70:	80 83       	st	Z, r24
+	ADCSRA |= (1<< ADEN) | (1 << ADPS1) | (1 << ADPS0) |  (1 << ADIE);
+  72:	ea e7       	ldi	r30, 0x7A	; 122
+  74:	f0 e0       	ldi	r31, 0x00	; 0
+  76:	80 81       	ld	r24, Z
+  78:	8b 68       	ori	r24, 0x8B	; 139
+  7a:	80 83       	st	Z, r24
+
+	//Motor Timer's
+	TCCR0A |= (1<<COM0A1) | (1<<WGM00) | (1<<COM0B1);	//Phase Correct
+  7c:	84 b5       	in	r24, 0x24	; 36
+  7e:	81 6a       	ori	r24, 0xA1	; 161
+  80:	84 bd       	out	0x24, r24	; 36
+	TCCR0B|=(1<<CS01);	//Prescaler
+  82:	85 b5       	in	r24, 0x25	; 37
+  84:	82 60       	ori	r24, 0x02	; 2
+  86:	85 bd       	out	0x25, r24	; 37
+	OCR0A = 0;	//PWM control (motor speed)
+  88:	17 bc       	out	0x27, r1	; 39
+	OCR0B = 0;
+  8a:	18 bc       	out	0x28, r1	; 40
+	
+	//Led blinking at 1Hz
+	TCCR1A|=0;  //Timer1 16 bits, which means a maximum number ((2^16) -1)=65535 // CTC
+  8c:	e0 e8       	ldi	r30, 0x80	; 128
+  8e:	f0 e0       	ldi	r31, 0x00	; 0
+  90:	80 81       	ld	r24, Z
+  92:	80 83       	st	Z, r24
+	TCCR1B|= (1 << WGM12) | (1 << CS12) | (1 << CS10); //Prescaler 1024/ timer startup
+  94:	e1 e8       	ldi	r30, 0x81	; 129
+  96:	f0 e0       	ldi	r31, 0x00	; 0
+  98:	80 81       	ld	r24, Z
+  9a:	8d 60       	ori	r24, 0x0D	; 13
+  9c:	80 83       	st	Z, r24
+	TIMSK1=(1 << OCIE1A); // enable interruption
+  9e:	82 e0       	ldi	r24, 0x02	; 2
+  a0:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__EEPROM_REGION_LENGTH__+0x7f006f>
+	OCR1A=487; //487
+  a4:	87 ee       	ldi	r24, 0xE7	; 231
+  a6:	91 e0       	ldi	r25, 0x01	; 1
+  a8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__EEPROM_REGION_LENGTH__+0x7f0089>
+  ac:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__EEPROM_REGION_LENGTH__+0x7f0088>
+	
+	//INT0 interruption
+	EICRA|=(1<<ISC00);
+  b0:	e9 e6       	ldi	r30, 0x69	; 105
+  b2:	f0 e0       	ldi	r31, 0x00	; 0
+  b4:	80 81       	ld	r24, Z
+  b6:	81 60       	ori	r24, 0x01	; 1
+  b8:	80 83       	st	Z, r24
+	EIMSK|=(1<<INT0);
+  ba:	e8 9a       	sbi	0x1d, 0	; 29
+	EIFR|=(1<<INTF0);
+  bc:	e0 9a       	sbi	0x1c, 0	; 28
+	
+
+	//SREG |= 0x80;
+	sei();  //enable interruption
+  be:	78 94       	sei
+  c0:	08 95       	ret
+
+000000c2 <__vector_11>:
+}
+
+ISR(TIMER1_COMPA_vect){
+  c2:	1f 92       	push	r1
+  c4:	0f 92       	push	r0
+  c6:	0f b6       	in	r0, 0x3f	; 63
+  c8:	0f 92       	push	r0
+  ca:	11 24       	eor	r1, r1
+  cc:	8f 93       	push	r24
+  ce:	9f 93       	push	r25
+	PORTB ^= (1 << PINB0);	//toggle pin logical level
+  d0:	95 b1       	in	r25, 0x05	; 5
+  d2:	81 e0       	ldi	r24, 0x01	; 1
+  d4:	89 27       	eor	r24, r25
+  d6:	85 b9       	out	0x05, r24	; 5
+}
+  d8:	9f 91       	pop	r25
+  da:	8f 91       	pop	r24
+  dc:	0f 90       	pop	r0
+  de:	0f be       	out	0x3f, r0	; 63
+  e0:	0f 90       	pop	r0
+  e2:	1f 90       	pop	r1
+  e4:	18 95       	reti
+
+000000e6 <__vector_21>:
+
+ISR(ADC_vect)	//line following sensors
+{
+  e6:	1f 92       	push	r1
+  e8:	0f 92       	push	r0
+  ea:	0f b6       	in	r0, 0x3f	; 63
+  ec:	0f 92       	push	r0
+  ee:	11 24       	eor	r1, r1
+  f0:	8f 93       	push	r24
+  f2:	9f 93       	push	r25
+  f4:	ef 93       	push	r30
+  f6:	ff 93       	push	r31
+	switch (ADMUX)
+  f8:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+  fc:	82 36       	cpi	r24, 0x62	; 98
+  fe:	09 f1       	breq	.+66     	; 0x142 <__vector_21+0x5c>
+ 100:	28 f4       	brcc	.+10     	; 0x10c <__vector_21+0x26>
+ 102:	80 36       	cpi	r24, 0x60	; 96
+ 104:	41 f0       	breq	.+16     	; 0x116 <__vector_21+0x30>
+ 106:	81 36       	cpi	r24, 0x61	; 97
+ 108:	89 f0       	breq	.+34     	; 0x12c <__vector_21+0x46>
+ 10a:	3b c0       	rjmp	.+118    	; 0x182 <__vector_21+0x9c>
+ 10c:	83 36       	cpi	r24, 0x63	; 99
+ 10e:	21 f1       	breq	.+72     	; 0x158 <__vector_21+0x72>
+ 110:	84 36       	cpi	r24, 0x64	; 100
+ 112:	69 f1       	breq	.+90     	; 0x16e <__vector_21+0x88>
+ 114:	36 c0       	rjmp	.+108    	; 0x182 <__vector_21+0x9c>
+	{
+		case (0x60) :	//ADC selection
+		s[0]=ADCH;	//ADC read and value storage
+ 116:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__EEPROM_REGION_LENGTH__+0x7f0079>
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+ 11c:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 120:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		ADMUX = 0x61;	//ADC switch
+ 124:	81 e6       	ldi	r24, 0x61	; 97
+ 126:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+		break;
+ 12a:	2b c0       	rjmp	.+86     	; 0x182 <__vector_21+0x9c>
+		
+		case (0x61):
+		s[1]=ADCH;
+ 12c:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__EEPROM_REGION_LENGTH__+0x7f0079>
+ 130:	90 e0       	ldi	r25, 0x00	; 0
+ 132:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <_edata+0x3>
+ 136:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <_edata+0x2>
+		ADMUX = 0x62;
+ 13a:	82 e6       	ldi	r24, 0x62	; 98
+ 13c:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+		break;
+ 140:	20 c0       	rjmp	.+64     	; 0x182 <__vector_21+0x9c>
+		
+		case (0x62):
+		s[2]=ADCH;
+ 142:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__EEPROM_REGION_LENGTH__+0x7f0079>
+ 146:	90 e0       	ldi	r25, 0x00	; 0
+ 148:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <_edata+0x5>
+ 14c:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <_edata+0x4>
+		ADMUX = 0x63;
+ 150:	83 e6       	ldi	r24, 0x63	; 99
+ 152:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+		break;
+ 156:	15 c0       	rjmp	.+42     	; 0x182 <__vector_21+0x9c>
+		
+		case (0x63):
+		s[3]=ADCH;
+ 158:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__EEPROM_REGION_LENGTH__+0x7f0079>
+ 15c:	90 e0       	ldi	r25, 0x00	; 0
+ 15e:	90 93 07 01 	sts	0x0107, r25	; 0x800107 <_edata+0x7>
+ 162:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <_edata+0x6>
+		ADMUX = 0x64;
+ 166:	84 e6       	ldi	r24, 0x64	; 100
+ 168:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+		break;
+ 16c:	0a c0       	rjmp	.+20     	; 0x182 <__vector_21+0x9c>
+		
+		case (0x64):
+		s[4]=ADCH;
+ 16e:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__EEPROM_REGION_LENGTH__+0x7f0079>
+ 172:	90 e0       	ldi	r25, 0x00	; 0
+ 174:	90 93 09 01 	sts	0x0109, r25	; 0x800109 <__bss_end+0x1>
+ 178:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <__bss_end>
+		ADMUX = 0x60;
+ 17c:	80 e6       	ldi	r24, 0x60	; 96
+ 17e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__EEPROM_REGION_LENGTH__+0x7f007c>
+		break;
+		
+	}
+	ADCSRA|= (1<<ADSC);	//value conversion initiates
+ 182:	ea e7       	ldi	r30, 0x7A	; 122
+ 184:	f0 e0       	ldi	r31, 0x00	; 0
+ 186:	80 81       	ld	r24, Z
+ 188:	80 64       	ori	r24, 0x40	; 64
+ 18a:	80 83       	st	Z, r24
+	
+}
+ 18c:	ff 91       	pop	r31
+ 18e:	ef 91       	pop	r30
+ 190:	9f 91       	pop	r25
+ 192:	8f 91       	pop	r24
+ 194:	0f 90       	pop	r0
+ 196:	0f be       	out	0x3f, r0	; 63
+ 198:	0f 90       	pop	r0
+ 19a:	1f 90       	pop	r1
+ 19c:	18 95       	reti
+
+0000019e <__vector_1>:
+
+ISR(INT0_vect){
+ 19e:	1f 92       	push	r1
+ 1a0:	0f 92       	push	r0
+ 1a2:	0f b6       	in	r0, 0x3f	; 63
+ 1a4:	0f 92       	push	r0
+ 1a6:	11 24       	eor	r1, r1
+ 1a8:	8f 93       	push	r24
+ 1aa:	9f 93       	push	r25
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1ac:	87 e9       	ldi	r24, 0x97	; 151
+ 1ae:	9a e3       	ldi	r25, 0x3A	; 58
+ 1b0:	01 97       	sbiw	r24, 0x01	; 1
+ 1b2:	f1 f7       	brne	.-4      	; 0x1b0 <__vector_1+0x12>
+ 1b4:	00 c0       	rjmp	.+0      	; 0x1b6 <__vector_1+0x18>
+ 1b6:	00 00       	nop
+	_delay_ms(60);
+	uint16_t Ultra();
+	
+}
+ 1b8:	9f 91       	pop	r25
+ 1ba:	8f 91       	pop	r24
+ 1bc:	0f 90       	pop	r0
+ 1be:	0f be       	out	0x3f, r0	; 63
+ 1c0:	0f 90       	pop	r0
+ 1c2:	1f 90       	pop	r1
+ 1c4:	18 95       	reti
+
+000001c6 <Ultra>:
+	uint16_t i,result;			//local variables
+	
+	//Echo
+	for(i=0;i<600000;i++)		//Test to determine when echo's logical level is 1
+	{
+		if(!(PIND&(1<<PD2)))	//If logical value equals 0, continues processing
+ 1c6:	4a 9b       	sbis	0x09, 2	; 9
+ 1c8:	fe cf       	rjmp	.-4      	; 0x1c6 <Ultra>
+		continue;
+		else					//If equals 1 exits for loop
+		break;
+	}
+	//Timer2
+	TCCR2A|=0x00;				//Normal mode operation
+ 1ca:	e0 eb       	ldi	r30, 0xB0	; 176
+ 1cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ce:	80 81       	ld	r24, Z
+ 1d0:	80 83       	st	Z, r24
+	TCCR2B|=(1<<CS20);			//Without Prescaler (=1)
+ 1d2:	e1 eb       	ldi	r30, 0xB1	; 177
+ 1d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d6:	80 81       	ld	r24, Z
+ 1d8:	81 60       	ori	r24, 0x01	; 1
+ 1da:	80 83       	st	Z, r24
+	TCNT2|=0x00;				//Counter initialization
+ 1dc:	e2 eb       	ldi	r30, 0xB2	; 178
+ 1de:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	80 83       	st	Z, r24
+
+	for(i=0;i<600000;i++)		//Test to determine when echo's logical level is 0
+	{
+		if(PIND&(1<<PD2))
+ 1e4:	4a 9b       	sbis	0x09, 2	; 9
+ 1e6:	03 c0       	rjmp	.+6      	; 0x1ee <Ultra+0x28>
+		{
+			if(TCNT2>60000)		//Once superior limit is hit, loop breaks
+ 1e8:	80 81       	ld	r24, Z
+	TCCR2B|=(1<<CS20);			//Without Prescaler (=1)
+	TCNT2|=0x00;				//Counter initialization
+
+	for(i=0;i<600000;i++)		//Test to determine when echo's logical level is 0
+	{
+		if(PIND&(1<<PD2))
+ 1ea:	4a 99       	sbic	0x09, 2	; 9
+ 1ec:	fd cf       	rjmp	.-6      	; 0x1e8 <Ultra+0x22>
+		}
+
+		else
+		break;
+	}
+	result=TCNT2;				//Stores value in local variable (result)
+ 1ee:	80 91 b2 00 	lds	r24, 0x00B2	; 0x8000b2 <__EEPROM_REGION_LENGTH__+0x7f00b2>
+	//Stop Timer
+	TCCR2B=0x00;				//Reset
+ 1f2:	10 92 b1 00 	sts	0x00B1, r1	; 0x8000b1 <__EEPROM_REGION_LENGTH__+0x7f00b1>
+	//Convetr to CM
+	//result/=58;					//Convertion to centimeters
+	return (result>>1);
+ 1f6:	90 e0       	ldi	r25, 0x00	; 0
+	
+
+}
+ 1f8:	96 95       	lsr	r25
+ 1fa:	87 95       	ror	r24
+ 1fc:	08 95       	ret
+
+000001fe <Pulso>:
+
+void Pulso(){
+	
+	// 		PORTB&=~(1<<PB7);
+	PORTB|=(1<<PB7);	//Sends pulse
+ 1fe:	2f 9a       	sbi	0x05, 7	; 5
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 200:	83 e0       	ldi	r24, 0x03	; 3
+ 202:	8a 95       	dec	r24
+ 204:	f1 f7       	brne	.-4      	; 0x202 <Pulso+0x4>
+ 206:	00 00       	nop
+	_delay_us(10);	//Waits 10 us
+	PORTB&=~(1<<PB7);	//receives pulse
+ 208:	2f 98       	cbi	0x05, 7	; 5
+ 20a:	08 95       	ret
+
+0000020c <converter>:
+	
+}
+
+int converter(void){
+	
+	ADCSRA|=(1<<ADSC); //Conversion begins
+ 20c:	ea e7       	ldi	r30, 0x7A	; 122
+ 20e:	f0 e0       	ldi	r31, 0x00	; 0
+ 210:	80 81       	ld	r24, Z
+ 212:	80 64       	ori	r24, 0x40	; 64
+ 214:	80 83       	st	Z, r24
+	while((ADCSRA & (1<<ADSC)) != 0);	//Waits until conversion is finished
+ 216:	80 81       	ld	r24, Z
+ 218:	86 fd       	sbrc	r24, 6
+ 21a:	fd cf       	rjmp	.-6      	; 0x216 <converter+0xa>
+	return (s[MAX]);
+}
+ 21c:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <__bss_end>
+ 220:	90 91 09 01 	lds	r25, 0x0109	; 0x800109 <__bss_end+0x1>
+ 224:	08 95       	ret
+
+00000226 <moverAGV>:
+
+void moverAGV(void){
+
+	char c=0;	//local variable which aids in movement control once black line is lost
+	
+	Pulso();
+ 226:	eb df       	rcall	.-42     	; 0x1fe <Pulso>
+	if(Ultra() <10) //1160 = 20 x 58 para 20 CM
+ 228:	ce df       	rcall	.-100    	; 0x1c6 <Ultra>
+ 22a:	0a 97       	sbiw	r24, 0x0a	; 10
+ 22c:	10 f4       	brcc	.+4      	; 0x232 <moverAGV+0xc>
+	PORTD|=(1<<PIND0);
+ 22e:	58 9a       	sbi	0x0b, 0	; 11
+ 230:	01 c0       	rjmp	.+2      	; 0x234 <moverAGV+0xe>
+	else
+
+	PORTD&=~(1<<PIND0);
+ 232:	58 98       	cbi	0x0b, 0	; 11
+	
+
+	if(s[0]>th && s[1]<th && s[2]>th && s[3]<th) //Forward
+ 234:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 238:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 23c:	81 38       	cpi	r24, 0x81	; 129
+ 23e:	91 05       	cpc	r25, r1
+ 240:	ec f0       	brlt	.+58     	; 0x27c <moverAGV+0x56>
+ 242:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <_edata+0x2>
+ 246:	30 91 03 01 	lds	r19, 0x0103	; 0x800103 <_edata+0x3>
+ 24a:	20 38       	cpi	r18, 0x80	; 128
+ 24c:	31 05       	cpc	r19, r1
+ 24e:	b4 f4       	brge	.+44     	; 0x27c <moverAGV+0x56>
+ 250:	20 91 04 01 	lds	r18, 0x0104	; 0x800104 <_edata+0x4>
+ 254:	30 91 05 01 	lds	r19, 0x0105	; 0x800105 <_edata+0x5>
+ 258:	21 38       	cpi	r18, 0x81	; 129
+ 25a:	31 05       	cpc	r19, r1
+ 25c:	7c f0       	brlt	.+30     	; 0x27c <moverAGV+0x56>
+ 25e:	20 91 06 01 	lds	r18, 0x0106	; 0x800106 <_edata+0x6>
+ 262:	30 91 07 01 	lds	r19, 0x0107	; 0x800107 <_edata+0x7>
+ 266:	20 38       	cpi	r18, 0x80	; 128
+ 268:	31 05       	cpc	r19, r1
+ 26a:	44 f4       	brge	.+16     	; 0x27c <moverAGV+0x56>
+	{
+		c=1;
+		PORTD|=(1<<PIND3); PORTD &= ~(1<<PIND4);	//Left side motors rotate clockwise
+ 26c:	5b 9a       	sbi	0x0b, 3	; 11
+ 26e:	5c 98       	cbi	0x0b, 4	; 11
+		PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);	//Right side motors rotate clockwise
+ 270:	29 9a       	sbi	0x05, 1	; 5
+ 272:	5f 98       	cbi	0x0b, 7	; 11
+		OCR_ESQ_F;	//Dictates left motor's speed
+ 274:	86 e9       	ldi	r24, 0x96	; 150
+ 276:	87 bd       	out	0x27, r24	; 39
+		OCR_DIR_F;	//Dictates right motor's speed
+ 278:	88 bd       	out	0x28, r24	; 40
+ 27a:	08 95       	ret
+	}
+
+	else if(s[0]<th && s[1]>th && s[2]>th && s[3]<th) //Right curve
+ 27c:	80 38       	cpi	r24, 0x80	; 128
+ 27e:	91 05       	cpc	r25, r1
+ 280:	0c f0       	brlt	.+2      	; 0x284 <moverAGV+0x5e>
+ 282:	57 c0       	rjmp	.+174    	; 0x332 <moverAGV+0x10c>
+ 284:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <_edata+0x2>
+ 288:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <_edata+0x3>
+ 28c:	81 38       	cpi	r24, 0x81	; 129
+ 28e:	91 05       	cpc	r25, r1
+ 290:	44 f1       	brlt	.+80     	; 0x2e2 <moverAGV+0xbc>
+ 292:	20 91 04 01 	lds	r18, 0x0104	; 0x800104 <_edata+0x4>
+ 296:	30 91 05 01 	lds	r19, 0x0105	; 0x800105 <_edata+0x5>
+ 29a:	21 38       	cpi	r18, 0x81	; 129
+ 29c:	31 05       	cpc	r19, r1
+ 29e:	0c f4       	brge	.+2      	; 0x2a2 <moverAGV+0x7c>
+ 2a0:	48 c0       	rjmp	.+144    	; 0x332 <moverAGV+0x10c>
+ 2a2:	20 91 06 01 	lds	r18, 0x0106	; 0x800106 <_edata+0x6>
+ 2a6:	30 91 07 01 	lds	r19, 0x0107	; 0x800107 <_edata+0x7>
+ 2aa:	20 38       	cpi	r18, 0x80	; 128
+ 2ac:	31 05       	cpc	r19, r1
+ 2ae:	f4 f5       	brge	.+124    	; 0x32c <moverAGV+0x106>
+		c=2;
+		do	//curves until front sensor detects black
+		{
+			PORTD|=(1<<PIND3); PORTD &= ~(1<<PIND4);	//Left side motors rotate clockwise
+			PORTD|=(1<<PIND7); PORTB &= ~(1<<PINB1);	//Right side motors rotate anti-clockwise
+			OCR_ESQ_CD;	//Sets left motors speed for right curve
+ 2b0:	34 eb       	ldi	r19, 0xB4	; 180
+			OCR_DIR_CD;	//Sets right motors speed for right curve
+ 2b2:	28 ec       	ldi	r18, 0xC8	; 200
+			
+		}	 while (s[0]<th && s[1]>th);
+ 2b4:	e0 e0       	ldi	r30, 0x00	; 0
+ 2b6:	f1 e0       	ldi	r31, 0x01	; 1
+	else if(s[0]<th && s[1]>th && s[2]>th && s[3]<th) //Right curve
+	{
+		c=2;
+		do	//curves until front sensor detects black
+		{
+			PORTD|=(1<<PIND3); PORTD &= ~(1<<PIND4);	//Left side motors rotate clockwise
+ 2b8:	5b 9a       	sbi	0x0b, 3	; 11
+ 2ba:	5c 98       	cbi	0x0b, 4	; 11
+			PORTD|=(1<<PIND7); PORTB &= ~(1<<PINB1);	//Right side motors rotate anti-clockwise
+ 2bc:	5f 9a       	sbi	0x0b, 7	; 11
+ 2be:	29 98       	cbi	0x05, 1	; 5
+			OCR_ESQ_CD;	//Sets left motors speed for right curve
+ 2c0:	37 bd       	out	0x27, r19	; 39
+			OCR_DIR_CD;	//Sets right motors speed for right curve
+ 2c2:	28 bd       	out	0x28, r18	; 40
+			
+		}	 while (s[0]<th && s[1]>th);
+ 2c4:	80 81       	ld	r24, Z
+ 2c6:	91 81       	ldd	r25, Z+1	; 0x01
+ 2c8:	80 38       	cpi	r24, 0x80	; 128
+ 2ca:	91 05       	cpc	r25, r1
+ 2cc:	2c f4       	brge	.+10     	; 0x2d8 <moverAGV+0xb2>
+ 2ce:	82 81       	ldd	r24, Z+2	; 0x02
+ 2d0:	93 81       	ldd	r25, Z+3	; 0x03
+ 2d2:	81 38       	cpi	r24, 0x81	; 129
+ 2d4:	91 05       	cpc	r25, r1
+ 2d6:	84 f7       	brge	.-32     	; 0x2b8 <moverAGV+0x92>
+		//Sets both motors rotation direction to clockwise once the curve is finished
+		PORTD|=(1<<PIND3); PORTD &= ~(1<<PIND4);
+ 2d8:	5b 9a       	sbi	0x0b, 3	; 11
+ 2da:	5c 98       	cbi	0x0b, 4	; 11
+		PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);
+ 2dc:	29 9a       	sbi	0x05, 1	; 5
+ 2de:	5f 98       	cbi	0x0b, 7	; 11
+ 2e0:	08 95       	ret
+	}
+	
+	else if(s[0]<th && s[1]<th && s[2]>th && s[3]>th) //Left curve
+ 2e2:	80 38       	cpi	r24, 0x80	; 128
+ 2e4:	91 05       	cpc	r25, r1
+ 2e6:	2c f5       	brge	.+74     	; 0x332 <moverAGV+0x10c>
+ 2e8:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <_edata+0x4>
+ 2ec:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <_edata+0x5>
+ 2f0:	81 38       	cpi	r24, 0x81	; 129
+ 2f2:	91 05       	cpc	r25, r1
+ 2f4:	f4 f0       	brlt	.+60     	; 0x332 <moverAGV+0x10c>
+ 2f6:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <_edata+0x6>
+ 2fa:	90 91 07 01 	lds	r25, 0x0107	; 0x800107 <_edata+0x7>
+ 2fe:	81 38       	cpi	r24, 0x81	; 129
+ 300:	91 05       	cpc	r25, r1
+ 302:	bc f0       	brlt	.+46     	; 0x332 <moverAGV+0x10c>
+		c=3;
+		do	//curves until front sensor detects black
+		{
+			PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);	//Left side motors rotate anti-clockwise
+			PORTD|=(1<<PIND4); PORTD &= ~(1<<PIND3);	//Right side motors rotate clockwise
+			OCR_ESQ_CE;	//Sets left motors speed for left curve
+ 304:	38 ec       	ldi	r19, 0xC8	; 200
+			OCR_DIR_CE;	//Sets right motors speed for left curve
+ 306:	24 eb       	ldi	r18, 0xB4	; 180
+		}	while (s[0]<th);
+ 308:	e0 e0       	ldi	r30, 0x00	; 0
+ 30a:	f1 e0       	ldi	r31, 0x01	; 1
+	else if(s[0]<th && s[1]<th && s[2]>th && s[3]>th) //Left curve
+	{
+		c=3;
+		do	//curves until front sensor detects black
+		{
+			PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);	//Left side motors rotate anti-clockwise
+ 30c:	29 9a       	sbi	0x05, 1	; 5
+ 30e:	5f 98       	cbi	0x0b, 7	; 11
+			PORTD|=(1<<PIND4); PORTD &= ~(1<<PIND3);	//Right side motors rotate clockwise
+ 310:	5c 9a       	sbi	0x0b, 4	; 11
+ 312:	5b 98       	cbi	0x0b, 3	; 11
+			OCR_ESQ_CE;	//Sets left motors speed for left curve
+ 314:	37 bd       	out	0x27, r19	; 39
+			OCR_DIR_CE;	//Sets right motors speed for left curve
+ 316:	28 bd       	out	0x28, r18	; 40
+		}	while (s[0]<th);
+ 318:	80 81       	ld	r24, Z
+ 31a:	91 81       	ldd	r25, Z+1	; 0x01
+ 31c:	80 38       	cpi	r24, 0x80	; 128
+ 31e:	91 05       	cpc	r25, r1
+ 320:	ac f3       	brlt	.-22     	; 0x30c <moverAGV+0xe6>
+		//Sets both motors rotation direction to clockwise once the curve is finished
+		PORTD|=(1<<PIND3); PORTD &= ~(1<<PINB4);
+ 322:	5b 9a       	sbi	0x0b, 3	; 11
+ 324:	5c 98       	cbi	0x0b, 4	; 11
+		PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);
+ 326:	29 9a       	sbi	0x05, 1	; 5
+ 328:	5f 98       	cbi	0x0b, 7	; 11
+			PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);
+			break;
+			
+		}
+	}
+}
+ 32a:	08 95       	ret
+		//Sets both motors rotation direction to clockwise once the curve is finished
+		PORTD|=(1<<PIND3); PORTD &= ~(1<<PIND4);
+		PORTB|=(1<<PINB1); PORTD &= ~(1<<PIND7);
+	}
+	
+	else if(s[0]<th && s[1]<th && s[2]>th && s[3]>th) //Left curve
+ 32c:	80 38       	cpi	r24, 0x80	; 128
+ 32e:	91 05       	cpc	r25, r1
+ 330:	14 f3       	brlt	.-60     	; 0x2f6 <moverAGV+0xd0>
+ 332:	08 95       	ret
+
+00000334 <main>:
+
+
+
+int main(void)
+{
+	init();	//I/O, Timer and ADMUX initializations
+ 334:	90 de       	rcall	.-736    	; 0x56 <init>
+	while(1){
+		//do{
+		//PORTD |= (1<<PIND1);
+		converter();	//Converts sensors analogic values to digital ones
+ 336:	6a df       	rcall	.-300    	; 0x20c <converter>
+		moverAGV();	//Controls the AGV's movement according to the values the sensors read
+ 338:	76 df       	rcall	.-276    	; 0x226 <moverAGV>
+ 33a:	fd cf       	rjmp	.-6      	; 0x336 <main+0x2>
+
+0000033c <_exit>:
+ 33c:	f8 94       	cli
+
+0000033e <__stop_program>:
+ 33e:	ff cf       	rjmp	.-2      	; 0x33e <__stop_program>
